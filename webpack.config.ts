@@ -10,7 +10,8 @@ export const config = {
   entry: './index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js'
+    filename: '[name].js',
+    chunkFilename: '[name].[chunkhash].js'
   },
   resolve: {
     extensions: ['.ts', '.js', '.html', '.css'],
@@ -19,13 +20,16 @@ export const config = {
   devServer: {
     host: 'localhost',
     port: 4000,
-    https: true,
+    // https: true,
     historyApiFallback: true,
     contentBase: [ path.join(__dirname, 'src') ]
   },
   module: {
     rules: [
-      { test: /\.txt$/, use: 'raw-loader' },
+      {
+        test: /\.html$/,
+        use: 'raw-loader'
+      },
       {
         test: /\.(scss)$/,
         use: [{
@@ -54,6 +58,10 @@ export const config = {
                 configFileName: path.resolve(__dirname, 'src', 'tsconfig.json')
             }
         }]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf|svg|png)$/,
+        use: [ 'file-loader' ]
       }
     ]
   },
@@ -72,7 +80,6 @@ export const config = {
       'window.jQuery': 'jquery',
       Popper: ['popper.js', 'default']
     }),
-    new HtmlWebpackPlugin({template: './index.html'}),
     new CircularDependencyPlugin({ exclude: /node_modules/ })
   ]
 };
