@@ -7,7 +7,10 @@ export const config = {
   target: 'web',
   context: path.resolve(__dirname, 'src'),
   devtool: 'cheap-module-eval-source-map',
-  entry: './index.ts',
+  entry: {
+    app: './main.ts',
+    vendor: './vendor.ts'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
@@ -52,12 +55,15 @@ export const config = {
       },
       {
         test: /\.ts$/,
-        use: [{
+        use: [
+          {
             loader: 'awesome-typescript-loader',
             options: {
-                configFileName: path.resolve(__dirname, 'src', 'tsconfig.json')
+              configFileName: path.resolve(__dirname, 'src', 'tsconfig.json')
             }
-        }]
+          },
+          'angular2-template-loader'
+        ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|svg|png)$/,
@@ -66,6 +72,10 @@ export const config = {
     ]
   },
   plugins: [
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)(esm5)/,
+      path.resolve(__dirname, '../src')
+    ),
     new HtmlWebpackPlugin({
       template: './index.html',
       showErrors: true,
