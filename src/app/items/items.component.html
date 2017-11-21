@@ -2,12 +2,12 @@
     <!-- Content here -->
   <div class="row">
     <div class="col-md-4 col-sm-6 col-xs-12 py-2" *ngFor="let item of items">
-      <div class=" bg-white rounded p-1 image-hover">
+      <div class="bg-white rounded p-1 image-hover">
         <div class="capImage">
           <img src="{{item.imageURL}}" class="img-fluid" alt="Responsive image">
         </div>
         <div class="row no-gutters">
-          <div class="col">Descption: <span class="font-weight-bold">{{item.name}}</span></div>
+          <div class="col">Description: <span class="font-weight-bold">{{item.name}}</span></div>
           <div class="col-4">Price: <span class="font-weight-bold">{{item.price | currency}}</span></div>
         </div>
       </div>

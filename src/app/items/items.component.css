@@ -1,3 +1,4 @@
 .image-hover:hover {
-  background-color: lightgray !important;
+  background-color: whitesmoke !important;
+  cursor: pointer;
 }
