@@ -13,3 +13,4 @@ import '@angular/animations';
 // RxJS
 import 'rxjs';
 import 'zone.js';
+import 'bootstrap';

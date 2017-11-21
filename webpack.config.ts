@@ -2,6 +2,7 @@ import * as webpack from 'webpack';
 import * as path from 'path';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as CircularDependencyPlugin from 'circular-dependency-plugin';
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export const config = {
   target: 'web',
@@ -33,6 +34,33 @@ export const config = {
         test: /\.html$/,
         use: 'raw-loader'
       },
+      {
+				test: /\.css$/,
+				include: path.resolve(__dirname, 'src', 'app'),
+				loader: 'raw-loader'
+			},
+      {
+				test: /\.css$/,
+				exclude: path.resolve(__dirname, 'src', 'app'),
+				use: ExtractTextPlugin.extract({
+					use: "raw-loader"
+				})
+      }, 
+      // SASS loader and inject into components      
+			{
+				test: /\.scss$/,
+				include: path.resolve(__dirname, 'src', 'app'),
+				use: ['raw-loader', 'sass-loader']
+			},
+			// SASS global which not include in components
+			{
+				test: /\.scss$/,
+				exclude: path.resolve(__dirname, 'src', 'app'),
+				use: ExtractTextPlugin.extract({
+					use: ['raw-loader', 'sass-loader']
+				})
+
+			},
       {
         test: /\.(scss)$/,
         use: [{
@@ -76,6 +104,7 @@ export const config = {
       /angular(\\|\/)core(\\|\/)(esm5)/,
       path.resolve(__dirname, '../src')
     ),
+    new ExtractTextPlugin('[name].css'),
     new HtmlWebpackPlugin({
       template: './index.html',
       showErrors: true,
