@@ -8,8 +8,9 @@
 #### root
 These commands only work out of your root directory.
 
-$ npm install
-$ npm run build --- Runs the full Angular build and minification process. Use this for building for a deployment.
 $ npm start
 
-Open http://localhost:4000/ in your browser
+- $ `npm install`
+- $ `npm run build --- Runs the full Angular build and minification process. Use this for building for a deployment.`
+- $ `npm start`
+- Open `http://localhost:4000/` in your browser
