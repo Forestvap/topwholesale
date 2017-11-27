@@ -8,8 +8,6 @@
 #### root
 These commands only work out of your root directory.
 
-$ npm start
-
 - $ `npm install`
 - $ `npm run build --- Runs the full Angular build and minification process. Use this for building for a deployment.`
 - $ `npm start`
