@@ -4,16 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemService } from './services/item.service';
+import { AppRoutingModule }     from './app-routing.module';
+import { BeaniesComponent } from './beanies/items.component';
 
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        AppRoutingModule
     ],
     providers: [ ItemService ],
     declarations: [
         AppComponent,
-        ItemsComponent
+        ItemsComponent,
+        BeaniesComponent
     ],
     bootstrap: [ AppComponent ]
 })

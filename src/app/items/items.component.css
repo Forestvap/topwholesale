@@ -1,7 +1,12 @@
-.image-hover:hover {
+.image-hover:hover .prod-detail{
   background-color: navy !important;
   cursor: pointer;
   color: white;
+}
+
+.capImage:hover img {
+    transform: scale(1.1, 1.1);
+    transition: all 0.5s ease-out;
 }
 
 .py-60 {

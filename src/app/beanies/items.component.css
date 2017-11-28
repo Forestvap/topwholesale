@@ -1,0 +1,9 @@
+.image-hover:hover {
+  background-color: navy !important;
+  cursor: pointer;
+  color: white;
+}
+
+.py-60 {
+  padding: 60px 0;
+}

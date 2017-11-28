@@ -1,0 +1,17 @@
+<div class="container bg-white">
+    <!-- Content here -->
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12 py-2" *ngFor="let item of items">
+      <div class="bg-white rounded p-1 image-hover">
+        <div class="capImage py-60">
+          <img src="{{item.imageURL}}" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="font-weight-bold text-center">
+          <div>{{item.name}}</div>
+          <div>{{item.skuid}}</div>
+          <div>{{item.price | currency}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
