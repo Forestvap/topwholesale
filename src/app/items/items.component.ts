@@ -25,4 +25,12 @@ export class ItemsComponent implements OnInit {
                 );
     }
 
+    // getBeanies(): void {
+    //     this.itemService.getBeanies()
+    //         .subscribe(
+    //             items => this.items = items,
+    //             error => console.log('error', error)
+    //         );
+    // }
+
 }

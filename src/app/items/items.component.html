@@ -1,12 +1,17 @@
 <div class="container bg-white">
     <!-- Content here -->
+  <select [(ngModel)]="selectCategory" placeholder="search text goes here">
+    <option value="cap" selected>Cap</option>
+    <option value="beanie">Beanie</option>
+  </select>
   <div class="row">
-    <div class="col-md-4 col-sm-6 col-xs-12 py-2" *ngFor="let item of items">
+    <div class="col-md-4 col-sm-6 col-xs-12 py-2" *ngFor="let item of (items | filter: selectCategory)">
       <div class="bg-white rounded p-1 image-hover">
         <div class="capImage py-60">
           <img src="{{item.imageURL}}" class="img-fluid" alt="Responsive image">
         </div>
         <div class="prod-detail font-weight-bold text-center">
+          <div>{{item.category}}</div>
           <div>{{item.name}}</div>
           <div>{{item.skuid}}</div>
           <div>{{item.price | currency}}</div>

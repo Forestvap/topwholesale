@@ -21,7 +21,7 @@ const result = caps.split(',');
 
 result.forEach(
     x => {
-        const obj =  { skuid: x, name: 'Mr. Nice', price: 6.60, imageURL: 'assets/caps/' + x + '.jpg' };
+    const obj =  { skuid: x, category: 'cap', name: 'Mr. Nice', price: 6.60, imageURL: 'assets/caps/' + x + '.jpg' };
     ITEMS.push(obj)
 }
 )
@@ -47,7 +47,7 @@ const beaniesArr = beanies.split(',');
 
 beaniesArr.forEach(
     x => {
-        const obj =  { skuid: x, name: 'Mr. Nice', price: 7.60, imageURL: 'assets/beanies/' + x + '.jpg' };
-        BEANIES.push(obj)
+        const obj =  { skuid: x, category: 'beanie', name: 'Mr. Nice', price: 7.60, imageURL: 'assets/beanies/' + x + '.jpg' };
+        ITEMS.push(obj)
     }
 )

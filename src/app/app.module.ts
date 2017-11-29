@@ -6,6 +6,7 @@ import { ItemsComponent } from './items/items.component';
 import { ItemService } from './services/item.service';
 import { AppRoutingModule }     from './app-routing.module';
 import { BeaniesComponent } from './beanies/items.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { BeaniesComponent } from './beanies/items.component';
     declarations: [
         AppComponent,
         ItemsComponent,
-        BeaniesComponent
+        BeaniesComponent,
+        FilterPipe
     ],
     bootstrap: [ AppComponent ]
 })
