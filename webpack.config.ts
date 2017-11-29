@@ -4,6 +4,10 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as CircularDependencyPlugin from 'circular-dependency-plugin';
 import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css"
+});
+
 export const config = {
   target: 'web',
   context: path.resolve(__dirname, 'src'),
@@ -18,7 +22,7 @@ export const config = {
     chunkFilename: '[name].[chunkhash].js'
   },
   resolve: {
-    extensions: ['.ts', '.js', '.html', '.css'],
+    extensions: ['.ts', '.js', '.html', '.css', '.scss'],
     modules: ['node_modules']
   },
   devServer: {
@@ -35,51 +39,32 @@ export const config = {
         use: 'raw-loader'
       },
       {
-				test: /\.css$/,
-				include: path.resolve(__dirname, 'src', 'app'),
-				loader: 'raw-loader'
-			},
+        test: /\.css$/,
+        include: path.resolve(__dirname, 'src', 'app'),
+        loader: 'raw-loader'
+      },
       {
-				test: /\.css$/,
-				exclude: path.resolve(__dirname, 'src', 'app'),
-				use: ExtractTextPlugin.extract({
-					use: "raw-loader"
-				})
-      }, 
-      // SASS loader and inject into components      
-			{
-				test: /\.scss$/,
-				include: path.resolve(__dirname, 'src', 'app'),
-				use: ['raw-loader', 'sass-loader']
-			},
-			// SASS global which not include in components
-			{
-				test: /\.scss$/,
-				exclude: path.resolve(__dirname, 'src', 'app'),
-				use: ExtractTextPlugin.extract({
-					use: ['raw-loader', 'sass-loader']
-				})
-
-			},
+        test: /\.css$/,
+        exclude: path.resolve(__dirname, 'src', 'app'),
+        use: ExtractTextPlugin.extract({
+            use: "raw-loader"
+        })
+      },
+      // SASS loader and inject into components
       {
-        test: /\.(scss)$/,
-        use: [{
-          loader: 'style-loader', // inject CSS to page
-        }, {
-          loader: 'css-loader', // translates CSS into CommonJS modules
-        }, {
-          loader: 'postcss-loader', // Run post css actions
-          options: {
-            plugins: function () { // post css plugins, can be exported to postcss.config.js
-              return [
-                require('precss'),
-                require('autoprefixer')
-              ];
+        test: /\.scss$/,
+        include: path.resolve(__dirname, 'src', 'app'),
+        use: [
+          'to-string-loader',
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              relativeUrls: false
             }
           }
-        }, {
-          loader: 'sass-loader' // compiles SASS to CSS
-        }]
+        ]
       },
       {
         test: /\.ts$/,
@@ -100,11 +85,11 @@ export const config = {
     ]
   },
   plugins: [
+    extractSass,
     new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)(esm5)/,
       path.resolve(__dirname, '../src')
     ),
-    new ExtractTextPlugin('[name].css'),
     new HtmlWebpackPlugin({
       template: './index.html',
       showErrors: true,

@@ -14,3 +14,4 @@ import '@angular/animations';
 import 'rxjs';
 import 'zone.js';
 import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';

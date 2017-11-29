@@ -1,0 +1,20 @@
+.image-hover:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.prod-display:hover {
+  .description {
+    background-color: navy !important;
+  }
+}
+
+
+img:hover {
+  transform: scale(1.1, 1.1);
+  transition: all 0.5s ease;
+}
+
+.py-60 {
+  padding: 60px 0;
+}
