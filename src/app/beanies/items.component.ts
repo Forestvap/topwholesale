@@ -18,7 +18,7 @@ export class BeaniesComponent implements OnInit {
     }
 
     getItems(): void {
-        this.itemService.getBeanies()
+        this.itemService.getItems()
             .subscribe(
                 items => this.items = items,
                 error => console.log('error', error)
